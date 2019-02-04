@@ -5,16 +5,13 @@
         "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
     },
     "watch": [
-        "common/",
         "config/",
-        "modules/",
-        "themes/",
+        "resources/",
         "./app.js",
-        "./server.js",
-        "./webpack.config.js"
+        "./server.js"
     ],
     "env": {
         "NODE_ENV": "development"
     },
-    "ext": "js pug hbs vue scss"
+    "ext": "js pug hbs scss"
 }

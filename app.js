@@ -78,11 +78,6 @@ ngenyekBot.use(function(req, res, next){
   req.session.messages = [];
 });
 
-// load modules
-import moduleFactory from './modules/moduleFactory.js';
-const ModuleFactoryClass = moduleFactory(ngenyekBot, { verbose: !module.parent });
-const allMOdules = new ModuleFactoryClass();
-
 // catch 404 and forward to error handler
 ngenyekBot.use(function(req, res, next) {
   next(createError(404));
@@ -95,6 +90,29 @@ ngenyekBot.use(function(err, req, res, next) {
 
   res.status(err.status || 500);
   res.render(path.join(__dirname, './resources/views/errors/error'), {layout: 'errorlayout'});
+});
+
+
+// bot section
+import TelegramBot from 'node-telegram-bot-api';
+const token = '795756780:AAGhviOnmfklTMxUGlJlo7WJZiomHK0vcP8';
+const bot = new TelegramBot(token, {polling: true});
+const enyekList = [
+  'bgst!',
+  'naskleng!',
+  'kampret!',
+  'taek!',
+  'kamfang!',
+  'babi koe!'
+];
+let _renderEnyek;
+
+_renderEnyek = enyekList[Math.floor(Math.random()*enyekList.length)];
+bot.onText(/\/ngenyek (.+)/, (msg, match) => {
+  let resp = match[1];
+  
+  if(resp=='cuk')
+    bot.sendMessage(msg.chat.id, _renderEnyek);
 });
 
 export default ngenyekBot;
