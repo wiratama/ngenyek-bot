@@ -92,7 +92,6 @@ ngenyekBot.use(function(err, req, res, next) {
   res.render(path.join(__dirname, './resources/views/errors/error'), {layout: 'errorlayout'});
 });
 
-
 // bot section
 import TelegramBot from 'node-telegram-bot-api';
 const token = '795756780:AAGhviOnmfklTMxUGlJlo7WJZiomHK0vcP8';
